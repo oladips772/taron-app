@@ -32,6 +32,7 @@ const SignedInStack = () => {
           fontSize: 12,
           margin: 0,
           padding: 0,
+          fontWeight: "400",
         },
       }}
     >
@@ -44,13 +45,13 @@ const SignedInStack = () => {
               <MaterialCommunityIcons
                 name="ticket-confirmation"
                 color={color}
-                size={26}
+                size={24}
               />
             ) : (
               <MaterialCommunityIcons
                 name="ticket-confirmation-outline"
                 color={color}
-                size={26}
+                size={24}
               />
             ),
         }}
@@ -61,9 +62,9 @@ const SignedInStack = () => {
         options={{
           tabBarIcon: ({ color, focused }) =>
             focused ? (
-              <FontAwesome name="search" color={color} size={24} />
+              <FontAwesome name="search" color={color} size={22} />
             ) : (
-              <Feather name="search" color={color} size={24} />
+              <Feather name="search" color={color} size={22} />
             ),
         }}
       />
@@ -73,12 +74,12 @@ const SignedInStack = () => {
         options={{
           tabBarIcon: ({ color, focused }) =>
             focused ? (
-              <Ionicons name="ios-chatbubbles-sharp" color={color} size={24} />
+              <Ionicons name="ios-chatbubbles-sharp" color={color} size={22} />
             ) : (
               <Ionicons
                 name="ios-chatbubbles-outline"
                 color={color}
-                size={24}
+                size={22}
               />
             ),
         }}
@@ -89,9 +90,9 @@ const SignedInStack = () => {
         options={{
           tabBarIcon: ({ color, focused }) =>
             focused ? (
-              <FontAwesome name="user" color={color} size={24} />
+              <FontAwesome name="user" color={color} size={21} />
             ) : (
-              <FontAwesome name="user-o" color={color} size={22} />
+              <FontAwesome name="user-o" color={color} size={19} />
             ),
         }}
       />
