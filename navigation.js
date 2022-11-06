@@ -4,12 +4,10 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 import {
-  Foundation,
-  FontAwesome5,
-  MaterialIcons,
-  Octicons,
+  FontAwesome,
   Ionicons,
-  AntDesign,
+  MaterialCommunityIcons,
+  Feather,
 } from "react-native-vector-icons";
 import Events from "./screens/Events";
 import Browse from "./screens/Browse";
@@ -24,8 +22,17 @@ const SignedInStack = () => {
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: "#34A853",
-        tabBarInactiveTintColor: "black",
+        tabBarInactiveTintColor: "gray",
         tabBarShowLabel: true,
+        tabBarStyle: {
+          backgroundColor: "white",
+          paddingTop: 5,
+        },
+        tabBarLabelStyle: {
+          fontSize: 12,
+          margin: 0,
+          padding: 0,
+        },
       }}
     >
       <Tab.Screen
@@ -34,9 +41,17 @@ const SignedInStack = () => {
         options={{
           tabBarIcon: ({ color, focused }) =>
             focused ? (
-              <MaterialIcons name="home-filled" color={color} size={26} />
+              <MaterialCommunityIcons
+                name="ticket-confirmation"
+                color={color}
+                size={26}
+              />
             ) : (
-              <Octicons name="home" color={color} size={23} />
+              <MaterialCommunityIcons
+                name="ticket-confirmation-outline"
+                color={color}
+                size={26}
+              />
             ),
         }}
       />
@@ -46,9 +61,9 @@ const SignedInStack = () => {
         options={{
           tabBarIcon: ({ color, focused }) =>
             focused ? (
-              <Foundation name="clipboard-notes" color={color} size={24} />
+              <FontAwesome name="search" color={color} size={24} />
             ) : (
-              <Foundation name="clipboard" color={color} size={24} />
+              <Feather name="search" color={color} size={24} />
             ),
         }}
       />
@@ -58,9 +73,13 @@ const SignedInStack = () => {
         options={{
           tabBarIcon: ({ color, focused }) =>
             focused ? (
-              <AntDesign name="pluscircle" color={color} size={24} />
+              <Ionicons name="ios-chatbubbles-sharp" color={color} size={24} />
             ) : (
-              <AntDesign name="pluscircleo" color={color} size={24} />
+              <Ionicons
+                name="ios-chatbubbles-outline"
+                color={color}
+                size={24}
+              />
             ),
         }}
       />
@@ -70,9 +89,9 @@ const SignedInStack = () => {
         options={{
           tabBarIcon: ({ color, focused }) =>
             focused ? (
-              <FontAwesome5 name="user-alt" color={color} size={20} />
+              <FontAwesome name="user" color={color} size={24} />
             ) : (
-              <FontAwesome5 name="user" color={color} size={20} />
+              <FontAwesome name="user-o" color={color} size={22} />
             ),
         }}
       />
