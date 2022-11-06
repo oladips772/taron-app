@@ -1,12 +1,13 @@
 /** @format */
-import { View, Text } from "react-native";
 import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { SignedInStack } from "./navigation";
 
 const App = () => {
   return (
-    <View className="flex-1 items-center bg-blue-400">
-      <Text className="mt-4">App.js</Text>
-    </View>
+    <NavigationContainer>
+      <SignedInStack />
+    </NavigationContainer>
   );
 };
 

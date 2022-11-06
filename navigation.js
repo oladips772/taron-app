@@ -11,20 +11,26 @@ import {
   Ionicons,
   AntDesign,
 } from "react-native-vector-icons";
+import Events from "./screens/Events";
+import Browse from "./screens/Browse";
+import Chats from "./screens/Chats";
+import Account from "./screens/Account";
+import Login from "./screens/Login";
+import Register from "./screens/Register";
 
 const SignedInStack = () => {
   return (
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: "#7b4cdf",
+        tabBarActiveTintColor: "#34A853",
         tabBarInactiveTintColor: "black",
-        tabBarShowLabel: false,
+        tabBarShowLabel: true,
       }}
     >
       <Tab.Screen
-        name="Home"
-        component={Home}
+        name="Events"
+        component={Events}
         options={{
           tabBarIcon: ({ color, focused }) =>
             focused ? (
@@ -35,8 +41,8 @@ const SignedInStack = () => {
         }}
       />
       <Tab.Screen
-        name="Orders"
-        component={Orders}
+        name="Browse"
+        component={Browse}
         options={{
           tabBarIcon: ({ color, focused }) =>
             focused ? (
@@ -47,8 +53,8 @@ const SignedInStack = () => {
         }}
       />
       <Tab.Screen
-        name="Create"
-        component={CreateMeal}
+        name="Chats"
+        component={Chats}
         options={{
           tabBarIcon: ({ color, focused }) =>
             focused ? (
@@ -60,25 +66,13 @@ const SignedInStack = () => {
       />
       <Tab.Screen
         name="Account"
-        component={Profile}
+        component={Account}
         options={{
           tabBarIcon: ({ color, focused }) =>
             focused ? (
               <FontAwesome5 name="user-alt" color={color} size={20} />
             ) : (
               <FontAwesome5 name="user" color={color} size={20} />
-            ),
-        }}
-      />
-      <Tab.Screen
-        name="Help"
-        component={Help}
-        options={{
-          tabBarIcon: ({ color, focused }) =>
-            focused ? (
-              <Ionicons name="help-circle" color={color} size={26} />
-            ) : (
-              <Ionicons name="help-circle-outline" color={color} size={26} />
             ),
         }}
       />
