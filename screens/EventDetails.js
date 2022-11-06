@@ -17,6 +17,7 @@ import {
   Foundation,
   Entypo,
 } from "react-native-vector-icons";
+import tags from "../data/tags";
 
 const EventDetails = () => {
   const tabs = ["Details", "Attendees", "Discussions"];
@@ -25,17 +26,46 @@ const EventDetails = () => {
   const TabDetails = () => {
     return (
       <View className="flex-1">
-        <Text>wedding details</Text>
-        <Text>wedding details</Text>
-        <Text>wedding details</Text>
-        <Text>wedding details</Text>
-        <Text>wedding details</Text>
-        <Text>wedding details</Text>
-        <Text>wedding details</Text>
-        <Text>wedding details</Text>
-        <Text>wedding details</Text>
-        <Text>wedding details</Text>
-        <Text>wedding details</Text>
+        <Text className="text-[16px] text-slate-800 mb-2 tracking-wide leading-[21px]">
+          Our Dear Friends,It Gives Us Great Joy To Cordially Invite You To Our
+          Big Day. Your Presence Will Mean Everything To Us . We Hope To See
+          You!
+        </Text>
+        {/* time and calendar info view */}
+        <View className="p-[10px] flex-row items-center mt-3 mb-[5px] bg-[#34a85322] rounded-md space-x-6">
+          {/* calendar view */}
+          <View className="bg-[#34A853] p-[11px] rounded-[8px] shadow-[#34A853] flex-row items-center">
+            <FontAwesome5
+              name="calendar-alt"
+              size={20}
+              className="text-white"
+            />
+            <Text className="ml-[8px] text-white font-[600] text-[16px]">
+              18 Oct 2022
+            </Text>
+          </View>
+          {/* time view */}
+          <View className="flex-col items-start">
+            <Text className="font-[700] text-[18px] text-[#2E2F3A]">
+              05:00 PM
+            </Text>
+            <Text className="text-gray-500">Thursday</Text>
+          </View>
+        </View>
+        {/* tags view */}
+        <View className="break-words mt-2 max-w-[300px] my-2">
+          <Text className="font-[600] text-[15px]">Tags</Text>
+          <View className="flex-row mt-[4px] flex-wrap">
+            {tags.map((tag, index) => (
+              <View
+                key={index}
+                className=" bg-[#34a85322] m-[4px] rounded-[15px] h-[30px] w-[80px] flex-row justify-center items-center"
+              >
+                <Text className="text-[#34A853] font-[400]">{tag.name}</Text>
+              </View>
+            ))}
+          </View>
+        </View>
       </View>
     );
   };
@@ -73,9 +103,9 @@ const EventDetails = () => {
   return (
     <View className="flex-1 bg-white">
       <StatusBar backgroundColor="white" barStyle="dark-content" />
-      <ScrollView showsVerticalScrollIndicator={false} className="">
+      <ScrollView showsVerticalScrollIndicator={false} className="mt-[1px]">
         {/* header view for event host info */}
-        <View className="p-4 flex flex-row items-start justify-between mt-[17px] mb-2">
+        <View className="p-4 flex flex-row items-start justify-between mt-[10px] mb-2">
           <View className="flex flex-row items-start space-x-3">
             {/* host profile image */}
             <Image
@@ -112,7 +142,7 @@ const EventDetails = () => {
             className="aspect-video h-[250px]"
           />
         </View>
-        <Text className="text-center p-3 font-[500] text-[24px] text-slate-800">
+        <Text className="text-center p-3 font-[600] text-[24px] text-[#2E2F3A]">
           Toyo's Wedding
         </Text>
         {/* wedding details info view */}
@@ -124,15 +154,17 @@ const EventDetails = () => {
               size={17}
               className="text-[#34A853] bg-[#34a85343] rounded-full p-[6px] mr-[3px]"
             />
-            <Text className="font-[500]">22.2k</Text>
+            <Text className="font-[400]">22.2k</Text>
           </View>
           <View className="flex-row items-center pr-[25px] border-r border-[#34a85363]">
-            <Foundation
-              name="heart"
-              size={17}
-              className="text-[#34A853] bg-[#34a85343] rounded-full p-[7px] mr-[3px]"
-            />
-            <Text className="font-[500]">20.5k</Text>
+            <View className="bg-[#34a85343] flex-row items-center justify-center rounded-full mr-[3px]">
+              <Foundation
+                name="heart"
+                size={17}
+                className="text-[#34A853]  rounded-full p-[6px]"
+              />
+            </View>
+            <Text className="font-[400]">20.5k</Text>
           </View>
           <View className="flex-row items-center">
             <Fontisto
@@ -140,11 +172,11 @@ const EventDetails = () => {
               size={17}
               className="text-[#34A853] bg-[#34a85343] rounded-full p-[6px] mr-[3px]"
             />
-            <Text className="font-[500]">11.4k</Text>
+            <Text className="font-[400]">11.4k</Text>
           </View>
         </View>
         {/* tab navigators */}
-        <View className="flex-row mx-4 items-center justify-between mb-2">
+        <View className="flex-row mx-4 items-center justify-between mb-3 mt-3">
           <TouchableOpacity
             activeOpacity={0.7}
             onPress={() => setCurrentTab(tabs[0])}
@@ -172,7 +204,7 @@ const EventDetails = () => {
                 currentTab === tabs[1] ? "text-[#34A853]" : "text-gray-400"
               }`}
             >
-              Attendees
+              Attendees (10)
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -191,7 +223,7 @@ const EventDetails = () => {
             </Text>
           </TouchableOpacity>
         </View>
-        <View className="mx-4 mb-4">
+        <View className="mx-4 mb-3 ">
           {/* tab screens view */}
           {currentTab === tabs[0] && <TabDetails />}
           {currentTab === tabs[1] && <TabAttendees />}
