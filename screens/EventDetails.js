@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   ScrollView,
 } from "react-native";
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Fontisto,
   FontAwesome,
@@ -17,79 +17,58 @@ import {
   Foundation,
   Entypo,
 } from "react-native-vector-icons";
-import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-const Tab = createMaterialTopTabNavigator();
-import { enableScreens } from "react-native-screens";
 
-enableScreens(true);
-function TabDetails() {
-  return (
-    <View className="flex-1 bg-red-500">
-      <Text>wedding details</Text>
-      <Text>wedding details</Text>
-      <Text>wedding details</Text>
-      <Text>wedding details</Text>
-      <Text>wedding details</Text>
-      <Text>wedding details</Text>
-      <Text>wedding details</Text>
-      <Text>wedding details</Text>
-      <Text>wedding details</Text>
-      <Text>wedding details</Text>
-      <Text>wedding details</Text>
-    </View>
-  );
-}
-
-function TabAttendees() {
-  return (
-    <View>
-      <Text>wedding Attendees</Text>
-      <Text>wedding Attendees</Text>
-      <Text>wedding Attendees</Text>
-      <Text>wedding Attendees</Text>
-      <Text>wedding Attendees</Text>
-      <Text>wedding Attendees</Text>
-      <Text>wedding Attendees</Text>
-      <Text>wedding Attendees</Text>
-    </View>
-  );
-}
-
-function TabDiscussions() {
-  return (
-    <View>
-      <Text>wedding Discussions</Text>
-      <Text>wedding Discussions</Text>
-      <Text>wedding Discussions</Text>
-      <Text>wedding Discussions</Text>
-      <Text>wedding Discussions</Text>
-      <Text>wedding Discussions</Text>
-      <Text>wedding Discussions</Text>
-      <Text>wedding Discussions</Text>
-    </View>
-  );
-}
-
-// const NavigationCont = () => {
-//   return (
-//     <Tab.Navigator
-//       screenOptions={{
-//         tabBarLabelStyle: {
-//           fontSize: 12,
-//           color: "green",
-//         },
-//         tabBarIndicatorStyle: { backgroundColor: "green" },
-//       }}
-//     >
-//       <Tab.Screen name="Details" component={TabDetails} />
-//       <Tab.Screen name="Attendees" component={TabAttendees} />
-//       <Tab.Screen name="Discussions" component={TabDiscussions} />
-//     </Tab.Navigator>
-//   );
-// };
 const EventDetails = () => {
   const tabs = ["Details", "Attendees", "Discussions"];
   const [currentTab, setCurrentTab] = useState(tabs[0]);
+
+  const TabDetails = () => {
+    return (
+      <View className="flex-1">
+        <Text>wedding details</Text>
+        <Text>wedding details</Text>
+        <Text>wedding details</Text>
+        <Text>wedding details</Text>
+        <Text>wedding details</Text>
+        <Text>wedding details</Text>
+        <Text>wedding details</Text>
+        <Text>wedding details</Text>
+        <Text>wedding details</Text>
+        <Text>wedding details</Text>
+        <Text>wedding details</Text>
+      </View>
+    );
+  };
+
+  const TabAttendees = () => {
+    return (
+      <View>
+        <Text>wedding Attendees</Text>
+        <Text>wedding Attendees</Text>
+        <Text>wedding Attendees</Text>
+        <Text>wedding Attendees</Text>
+        <Text>wedding Attendees</Text>
+        <Text>wedding Attendees</Text>
+        <Text>wedding Attendees</Text>
+        <Text>wedding Attendees</Text>
+      </View>
+    );
+  };
+
+  const TabDiscussions = () => {
+    return (
+      <View>
+        <Text>wedding Discussions</Text>
+        <Text>wedding Discussions</Text>
+        <Text>wedding Discussions</Text>
+        <Text>wedding Discussions</Text>
+        <Text>wedding Discussions</Text>
+        <Text>wedding Discussions</Text>
+        <Text>wedding Discussions</Text>
+        <Text>wedding Discussions</Text>
+      </View>
+    );
+  };
 
   return (
     <View className="flex-1 bg-white">
@@ -165,16 +144,58 @@ const EventDetails = () => {
           </View>
         </View>
         {/* tab navigators */}
-        <View>
-          <TouchableOpacity>
-            <Text>Details</Text>
+        <View className="flex-row mx-4 items-center justify-between mb-2">
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={() => setCurrentTab(tabs[0])}
+            className={`p-2 ${
+              currentTab === tabs[0] ? "border-b-2 border-[#34A853]" : ""
+            }`}
+          >
+            <Text
+              className={`font-[500] text-[16px] ${
+                currentTab === tabs[0] ? "text-[#34A853]" : "text-gray-400"
+              }`}
+            >
+              Details
+            </Text>
           </TouchableOpacity>
-          <TouchableOpacity>
-            <Text>Attendees</Text>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={() => setCurrentTab(tabs[1])}
+            className={`p-2 ${
+              currentTab === tabs[1] ? "border-b-2 border-[#34A853]" : ""
+            }`}
+          >
+            <Text
+              className={`font-[500] text-[16px] ${
+                currentTab === tabs[1] ? "text-[#34A853]" : "text-gray-400"
+              }`}
+            >
+              Attendees
+            </Text>
           </TouchableOpacity>
-          <TouchableOpacity>
-            <Text>Discussions</Text>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={() => setCurrentTab(tabs[2])}
+            className={`p-2 ${
+              currentTab === tabs[2] ? "border-b-2 border-[#34A853]" : ""
+            }`}
+          >
+            <Text
+              className={`font-[500] text-[16px] ${
+                currentTab === tabs[2] ? "text-[#34A853]" : "text-gray-400"
+              }`}
+            >
+              Discussions
+            </Text>
           </TouchableOpacity>
+        </View>
+        <View className="mx-4 mb-4">
+          {/* tab screens view */}
+          {currentTab === tabs[0] && <TabDetails />}
+          {currentTab === tabs[1] && <TabAttendees />}
+          {currentTab === tabs[2] && <TabDiscussions />}
         </View>
       </ScrollView>
     </View>
