@@ -275,6 +275,7 @@ const EventDetails = () => {
           {currentTab === tabs[2] && <DiscussionsTab />}
         </View>
       </ScrollView>
+      {/* message input or chat control view */}
       {currentTab === tabs[2] && (
         <View className="mx-4 mb-3 flex-row justify-between items-center mt-3">
           <View className="bg-gray-200 p-[9px] flex-1 rounded-[4px] flex-row items-center">
