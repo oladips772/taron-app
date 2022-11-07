@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   ScrollView,
   StyleSheet,
+  TextInput,
 } from "react-native";
 import { useState } from "react";
 import {
@@ -25,6 +26,7 @@ import attendees from "../data/attendees";
 const EventDetails = () => {
   const tabs = ["Details", "Attendees", "Discussions"];
   const [currentTab, setCurrentTab] = useState(tabs[0]);
+  const [message, setMessage] = useState(null);
 
   const DetailsTab = () => {
     return (
@@ -109,16 +111,37 @@ const EventDetails = () => {
 
   const DiscussionsTab = () => {
     return (
-      <View>
-        <Text>wedding Discussions</Text>
-        <Text>wedding Discussions</Text>
-        <Text>wedding Discussions</Text>
-        <Text>wedding Discussions</Text>
-        <Text>wedding Discussions</Text>
-        <Text>wedding Discussions</Text>
-        <Text>wedding Discussions</Text>
-        <Text>wedding Discussions</Text>
-      </View>
+      <>
+        <View>
+          {attendees.map((item, index) => (
+            <TouchableOpacity
+              key={index}
+              activeOpacity={0.7}
+              className="flex-row items-start justify-between my-2 mx-[5px]"
+            >
+              {/* attendee info view */}
+              <View className="flex-row items-start space-x-2">
+                <Image
+                  source={{ uri: item.image }}
+                  className="h-[45px] w-[45px] rounded-full"
+                />
+                <View className="flex-col items-start max-w-[190px]">
+                  <Text className="text-[15px] font-[500] text-[#34A853]">
+                    {item.name}
+                  </Text>
+                  <Text className="text-gray-600 font-[400] break-words">
+                    {item.congratsTex.slice(0, 26)}
+                    {item.congratsTex.length > 26 && "...."}
+                  </Text>
+                </View>
+              </View>
+              {/* chat icon */}
+              <Text className="text-gray-600 text-[13px]">10:30 Am</Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+        {/* message input div */}
+      </>
     );
   };
 
@@ -252,6 +275,32 @@ const EventDetails = () => {
           {currentTab === tabs[2] && <DiscussionsTab />}
         </View>
       </ScrollView>
+      {currentTab === tabs[2] && (
+        <View className="mx-4 mb-3 flex-row justify-between items-center mt-3">
+          <View className="bg-gray-200 p-[9px] flex-1 rounded-[4px] flex-row items-center">
+            <TouchableOpacity activeOpacity={0.5} className="p-[4px]">
+              <Entypo name="plus" size={23} className="text-[#2DC054]" />
+            </TouchableOpacity>
+            <TextInput
+              value={message}
+              onChangeText={(val) => setMessage(val)}
+              placeholderTextColor={"gray"}
+              placeholder="Messages"
+              className="w-full text-[17px] ml-2"
+            />
+          </View>
+          <TouchableOpacity
+            className="h-[49px] w-[49px] bg-gray-200 rounded-md flex-row items-center justify-center ml-4"
+            activeOpacity={0.5}
+          >
+            {!message?.trim() ? (
+              <Fontisto name="mic" size={18} className="text-[#2DC054]" />
+            ) : (
+              <Ionicons name="ios-send" size={18} className="text-[#2DC054]" />
+            )}
+          </TouchableOpacity>
+        </View>
+      )}
     </View>
   );
 };
