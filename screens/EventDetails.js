@@ -17,6 +17,7 @@ import {
   MaterialIcons,
   Foundation,
   Entypo,
+  Ionicons,
 } from "react-native-vector-icons";
 import tags from "../data/tags";
 import attendees from "../data/attendees";
@@ -73,7 +74,37 @@ const EventDetails = () => {
   };
 
   const AttendeesTab = () => {
-    return <View></View>;
+    return (
+      <View>
+        {attendees.map((item, index) => (
+          <TouchableOpacity
+            key={index}
+            activeOpacity={0.7}
+            className="flex-row items-center justify-between my-2 mx-[5px]"
+          >
+            {/* attendee info view */}
+            <View className="flex-row items-center space-x-2">
+              <Image
+                source={{ uri: item.image }}
+                className="h-[45px] w-[45px] rounded-full"
+              />
+              <View className="flex-col items-start">
+                <Text className="text-[15px] font-[500] text-[#2E2F3A]">
+                  {item.name}
+                </Text>
+                <Text className="text-gray-500 font-[400]">{item.time}</Text>
+              </View>
+            </View>
+            {/* chat icon */}
+            <Ionicons
+              name="chatbubbles-outline"
+              className="text-[#34A853]"
+              size={23}
+            />
+          </TouchableOpacity>
+        ))}
+      </View>
+    );
   };
 
   const DiscussionsTab = () => {
