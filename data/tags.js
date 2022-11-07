@@ -12,9 +12,9 @@ const tags = [
   {
     name: "Vibes",
   },
-  {
-    name: "Love",
-  },
+  // {
+  //   name: "Love",
+  // },
 ];
 
 export default tags;

@@ -24,6 +24,8 @@ import tags from "../data/tags";
 import attendees from "../data/attendees";
 import images from "../data/images";
 import { SliderBox } from "react-native-image-slider-box";
+import { useFonts } from "expo-font";
+import AppLoading from "expo-app-loading";
 
 const EventDetails = () => {
   const tabs = ["Details", "Attendees", "Discussions"];
@@ -38,35 +40,54 @@ const EventDetails = () => {
           Big Day. Your Presence Will Mean Everything To Us . We Hope To See
           You!
         </Text>
-        {/* time and calendar info view */}
-        <View className="p-[14px] flex-row items-center mt-3 mb-[5px] bg-[#34a85322] rounded-md space-x-6">
-          {/* calendar view */}
-          <View className="bg-[#2DC054] p-[13px] rounded-[8px] shadow-[#34A853] flex-row items-center">
+        <TouchableOpacity activeOpacity={0.6} className="-mt-2 py-[2px]">
+          <Text className="text-[#34A853] font-[500] text-[16px]">
+            See more
+          </Text>
+        </TouchableOpacity>
+        {/* location info */}
+        <View className="my-2">
+          <View className="flex-row items-center">
+            <Entypo
+              name="location-pin"
+              className="text-[#34A853] -ml-2"
+              size={23}
+            />
+            <Text className="font-[500] text-[15px]">Location</Text>
+          </View>
+          <Text className="text-[16px] text-slate-800 mb-2 tracking-wide leading-[21px]">
+            24, Akinlotan Street, Agbede Ikorodu, Lagos State.
+          </Text>
+        </View>
+        {/* date view */}
+        <View className="my-2">
+          <View className="flex-row items-center space-x-2">
             <FontAwesome5
               name="calendar-alt"
+              className="text-[#34A853]"
               size={20}
-              className="text-white"
             />
-            <Text className="ml-[8px] text-white font-[600] text-[16px]">
-              18 Oct 2022
-            </Text>
+            <Text className="font-[500] text-[15px]">Date</Text>
           </View>
-          {/* time view */}
-          <View className="flex-col items-start">
-            <Text className="font-[700] text-[18px] text-[#2E2F3A]">
-              05:00 PM
-            </Text>
-            <Text className="text-gray-500">Thursday</Text>
-          </View>
+          <Text className="text-[16px] text-slate-800 mb-2 tracking-wide leading-[21px] mt-[3px]">
+            Thu, 8 Oct 2022 5:00 PM
+          </Text>
         </View>
         {/* tags view */}
-        <View className="break-words mt-2 max-w-[300px] my-2">
-          <Text className="font-[600] text-[15px]">Tags</Text>
+        <View className="break-words mt-4 my-2">
+          <View className="flex-row items-center space-x-2">
+            <Ionicons
+              name="ios-pricetags"
+              size={18}
+              className="text-[#34A853]"
+            />
+            <Text className="font-[600] text-[15px]">Tags</Text>
+          </View>
           <View className="flex-row mt-[4px] flex-wrap">
             {tags.map((tag, index) => (
               <View
                 key={index}
-                className=" bg-[#34a85322] m-[4px] rounded-[15px] h-[30px] w-[80px] flex-row justify-center items-center"
+                className=" bg-[#34a85322] m-[4px] rounded-[16px] h-[30px] w-[73px] flex-row justify-center items-center"
               >
                 <Text className="text-[#34A853] font-[400]">{tag.name}</Text>
               </View>
@@ -132,8 +153,7 @@ const EventDetails = () => {
                     {item.name}
                   </Text>
                   <Text className="text-gray-600 font-[400] break-words">
-                    {item.congratsTex.slice(0, 26)}
-                    {item.congratsTex.length > 26 && "...."}
+                    {item.congratsTex}
                   </Text>
                 </View>
               </View>
@@ -146,6 +166,14 @@ const EventDetails = () => {
       </>
     );
   };
+
+  let [fontLoaded] = useFonts({
+    "roboto": require("../assets/fonts/Roboto-Medium.ttf"),
+  });
+
+  if (!fontLoaded) {
+    return <AppLoading />;
+  }
 
   return (
     <View className="flex-1 bg-white">
@@ -162,7 +190,9 @@ const EventDetails = () => {
               className="h-[40px] w-[40px] rounded-full object-contain"
             />
             <View>
-              <Text className="font-[500] text-slate-700">Abimbola Pepper</Text>
+              <Text className="font-[500] text-slate-700 font-roboto">
+                Abimbola Pepper
+              </Text>
               <Text className="text-[#34A853] font-[600]">Host</Text>
             </View>
             <TouchableOpacity
@@ -208,8 +238,11 @@ const EventDetails = () => {
             }}
           />
         </View>
-        <View className="flex-row mx-3 items-center justify-between">
-          <Text className="text-center p-3 font-[700] text-[24px]">
+        <View className="flex-row mx-2 items-center justify-between">
+          <Text
+            className="text-center p-3 font-[700] text-[24px]"
+            style={{ fontFamily: "roboto" }}
+          >
             Toyo's Wedding
           </Text>
           {/* wedding details info view */}
@@ -283,7 +316,7 @@ const EventDetails = () => {
                 currentTab === tabs[2] ? "text-[#34A853]" : "text-gray-400"
               }`}
             >
-              Discussions
+              Comments (37)
             </Text>
           </TouchableOpacity>
         </View>
@@ -299,7 +332,7 @@ const EventDetails = () => {
         <View className="mx-4 mb-3 flex-row justify-between items-center mt-3">
           <View className="bg-gray-200 p-[9px] flex-1 rounded-[4px] flex-row items-center">
             <TouchableOpacity activeOpacity={0.5} className="p-[4px]">
-              <Entypo name="plus" size={23} className="text-[#2DC054]" />
+              <Entypo name="plus" size={23} className="" />
             </TouchableOpacity>
             <TextInput
               value={message}
@@ -314,9 +347,9 @@ const EventDetails = () => {
             activeOpacity={0.5}
           >
             {!message?.trim() ? (
-              <Fontisto name="mic" size={18} className="text-[#2DC054]" />
+              <Fontisto name="mic" size={18} className="" />
             ) : (
-              <Ionicons name="ios-send" size={18} className="text-[#2DC054]" />
+              <Ionicons name="ios-send" size={18} className="" />
             )}
           </TouchableOpacity>
         </View>
