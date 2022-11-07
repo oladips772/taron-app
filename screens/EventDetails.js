@@ -6,7 +6,6 @@ import {
   Image,
   TouchableOpacity,
   ScrollView,
-  StyleSheet,
   TextInput,
 } from "react-native";
 import { useState } from "react";
@@ -19,12 +18,12 @@ import {
   Foundation,
   Entypo,
   Ionicons,
+  AntDesign,
 } from "react-native-vector-icons";
 import tags from "../data/tags";
 import attendees from "../data/attendees";
 import images from "../data/images";
 import { SliderBox } from "react-native-image-slider-box";
-import { ImageSlider } from "react-native-image-slider-banner";
 
 const EventDetails = () => {
   const tabs = ["Details", "Attendees", "Discussions"];
@@ -185,9 +184,9 @@ const EventDetails = () => {
         <View>
           <SliderBox
             images={images}
-            sliderBoxHeight={270}
+            sliderBoxHeight={250}
             dotStyle={{
-              width: 25,
+              width: 20,
               height: 5,
               borderRadius: 4,
               padding: 0,
@@ -209,37 +208,35 @@ const EventDetails = () => {
             }}
           />
         </View>
-        <Text className="text-center p-3 font-[600] text-[24px] text-[#2E2F3A]">
-          Toyo's Wedding
-        </Text>
-        {/* wedding details info view */}
-        <View className="mx-8 flex-row items-center p-2 bg-[#FAFAFA] justify-between">
-          {/* icons view for wedding info */}
-          <View className="flex-row items-center pr-[10px] border-r border-[#34a85363]">
-            <MaterialIcons
-              name="chat"
-              size={17}
-              className="text-[#34A853] bg-[#34a85343] rounded-full p-[6px] mr-[3px]"
-            />
-            <Text className="font-[400]">22.2k</Text>
-          </View>
-          <View className="flex-row items-center pr-[25px] border-r border-[#34a85363]">
-            <View className="bg-[#34a85343] flex-row items-center justify-center rounded-full mr-[3px]">
-              <Foundation
-                name="heart"
-                size={17}
-                className="text-[#34A853]  rounded-full p-[6px]"
+        <View className="flex-row mx-3 items-center justify-between">
+          <Text className="text-center p-3 font-[700] text-[24px]">
+            Toyo's Wedding
+          </Text>
+          {/* wedding details info view */}
+          <View className="flex-row items-center p-2 justify-between space-x-6">
+            {/* icons view for wedding info */}
+            <TouchableOpacity
+              activeOpacity={0.6}
+              className="flex-col items-center"
+            >
+              <Ionicons
+                name="heart-outline"
+                size={23}
+                className="rounded-full"
               />
-            </View>
-            <Text className="font-[400]">20.5k</Text>
-          </View>
-          <View className="flex-row items-center">
-            <Fontisto
-              name="share"
-              size={17}
-              className="text-[#34A853] bg-[#34a85343] rounded-full p-[6px] mr-[3px]"
-            />
-            <Text className="font-[400]">11.4k</Text>
+              <Text className="font-[400] text-[12px] p-[2px] text-[#34A853]">
+                20.5k
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              activeOpacity={0.6}
+              className="flex-col items-center"
+            >
+              <AntDesign name="sharealt" size={23} className="rounded-full" />
+              <Text className="font-[400] text-[12px] p-[2px] text-[#34A853]">
+                11.4k
+              </Text>
+            </TouchableOpacity>
           </View>
         </View>
         {/* tab navigators */}
@@ -329,9 +326,3 @@ const EventDetails = () => {
 };
 
 export default EventDetails;
-
-const styles = StyleSheet.create({
-  calendar: {
-    backgroundColor: "linear-gradient(95.8deg, #34A853 -0.68%, #2DC054 98.01%)",
-  },
-});
