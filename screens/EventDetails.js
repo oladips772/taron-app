@@ -22,6 +22,9 @@ import {
 } from "react-native-vector-icons";
 import tags from "../data/tags";
 import attendees from "../data/attendees";
+import images from "../data/images";
+import { SliderBox } from "react-native-image-slider-box";
+import { ImageSlider } from "react-native-image-slider-banner";
 
 const EventDetails = () => {
   const tabs = ["Details", "Attendees", "Discussions"];
@@ -180,11 +183,30 @@ const EventDetails = () => {
         </View>
         {/* wedding images view */}
         <View>
-          <Image
-            source={{
-              uri: "https://cdn0.weddingwire.com/article/7776/3_2/960/jpg/6777-s-wedding-processional-order-aurora-photography.jpeg",
+          <SliderBox
+            images={images}
+            sliderBoxHeight={270}
+            dotStyle={{
+              width: 25,
+              height: 5,
+              borderRadius: 4,
+              padding: 0,
+              margin: 0,
             }}
-            className="aspect-video h-[250px]"
+            dotColor="#34A853"
+            inactiveDotColor="white"
+            autoplay
+            circleLoop
+            resizeMethod={"resize"}
+            resizeMode={"cover"}
+            paginationBoxStyle={{
+              position: "absolute",
+              bottom: 0,
+              padding: 0,
+              alignItems: "center",
+              alignSelf: "flex-start",
+              justifyContent: "center",
+            }}
           />
         </View>
         <Text className="text-center p-3 font-[600] text-[24px] text-[#2E2F3A]">
