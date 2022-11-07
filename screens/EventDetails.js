@@ -6,6 +6,7 @@ import {
   Image,
   TouchableOpacity,
   ScrollView,
+  StyleSheet,
 } from "react-native";
 import { useState } from "react";
 import {
@@ -18,12 +19,13 @@ import {
   Entypo,
 } from "react-native-vector-icons";
 import tags from "../data/tags";
+import attendees from "../data/attendees";
 
 const EventDetails = () => {
   const tabs = ["Details", "Attendees", "Discussions"];
   const [currentTab, setCurrentTab] = useState(tabs[0]);
 
-  const TabDetails = () => {
+  const DetailsTab = () => {
     return (
       <View className="flex-1">
         <Text className="text-[16px] text-slate-800 mb-2 tracking-wide leading-[21px]">
@@ -32,9 +34,9 @@ const EventDetails = () => {
           You!
         </Text>
         {/* time and calendar info view */}
-        <View className="p-[10px] flex-row items-center mt-3 mb-[5px] bg-[#34a85322] rounded-md space-x-6">
+        <View className="p-[14px] flex-row items-center mt-3 mb-[5px] bg-[#34a85322] rounded-md space-x-6">
           {/* calendar view */}
-          <View className="bg-[#34A853] p-[11px] rounded-[8px] shadow-[#34A853] flex-row items-center">
+          <View className="bg-[#2DC054] p-[13px] rounded-[8px] shadow-[#34A853] flex-row items-center">
             <FontAwesome5
               name="calendar-alt"
               size={20}
@@ -70,22 +72,11 @@ const EventDetails = () => {
     );
   };
 
-  const TabAttendees = () => {
-    return (
-      <View>
-        <Text>wedding Attendees</Text>
-        <Text>wedding Attendees</Text>
-        <Text>wedding Attendees</Text>
-        <Text>wedding Attendees</Text>
-        <Text>wedding Attendees</Text>
-        <Text>wedding Attendees</Text>
-        <Text>wedding Attendees</Text>
-        <Text>wedding Attendees</Text>
-      </View>
-    );
+  const AttendeesTab = () => {
+    return <View></View>;
   };
 
-  const TabDiscussions = () => {
+  const DiscussionsTab = () => {
     return (
       <View>
         <Text>wedding Discussions</Text>
@@ -225,9 +216,9 @@ const EventDetails = () => {
         </View>
         <View className="mx-4 mb-3 ">
           {/* tab screens view */}
-          {currentTab === tabs[0] && <TabDetails />}
-          {currentTab === tabs[1] && <TabAttendees />}
-          {currentTab === tabs[2] && <TabDiscussions />}
+          {currentTab === tabs[0] && <DetailsTab />}
+          {currentTab === tabs[1] && <AttendeesTab />}
+          {currentTab === tabs[2] && <DiscussionsTab />}
         </View>
       </ScrollView>
     </View>
@@ -235,3 +226,9 @@ const EventDetails = () => {
 };
 
 export default EventDetails;
+
+const styles = StyleSheet.create({
+  calendar: {
+    backgroundColor: "linear-gradient(95.8deg, #34A853 -0.68%, #2DC054 98.01%)",
+  },
+});

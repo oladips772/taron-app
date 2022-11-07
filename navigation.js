@@ -26,7 +26,7 @@ const SignedInStack = () => {
         tabBarShowLabel: true,
         tabBarStyle: {
           backgroundColor: "white",
-          paddingTop: 5,
+          paddingTop: 3,
         },
         tabBarLabelStyle: {
           fontSize: 12,
